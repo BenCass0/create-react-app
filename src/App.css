@@ -1,38 +1,111 @@
-.App {
-  text-align: center;
+.App{
+  width: 100%;
+  height: 100%;
+  background-color: hsl(0, 0%, 94%);
+  font-family: 'Poppins', sans-serif;
+  padding: 75px 0 0 350px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Divi{
+  width: 600px;
+  height: 500px;
+  border-color: white;
+  background-color: white;
+  border-radius: 20px 20px 150px 20px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.calculadora{
+  font-size: 62px;
+  font-style: italic;
+  font-weight: 800;
+  margin: 0px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+input{
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  padding-left: 10px;
+  width: 100px;
+  height: 40px;
+  font-weight: 700;
+  border: 1px solid hsl(0, 0%, 86%);
+  border-radius: 5px;
+  caret-color: hsl(259, 100%, 65%);
+  caret-shape: 2px;
+}
+input:focus{
+  border: none;
+  border: 1px solid hsl(259, 100%, 65%);
+  outline: none;
+}
+ul{
+  list-style: none;
+}
+li .titu{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-left: 0px;
 }
-
-.App-link {
-  color: #61dafb;
+li .titulos{
+  margin-right: 106px;
+  width: 30px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+li .titulo{
+  margin-right: 50px;
+}
+.titu{
+  opacity: 0.5;
+  font-size: 12px;
+}
+li .in{
+  margin-right: 20px;
+}
+ul .inputs{
+  display: flex;
+  padding-top: 3px;
+  height: 45px;
+}
+ul .validacion{
+  padding-top: 2px;
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 11px;
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+}
+li .validacion2,
+li .validacion3{
+  padding-left: 24px;
+}
+.fecha{
+  padding-top: 35px;
+  padding-left: 0px;
+  height: 100px;
+  width: 526px;
+  border:1px solid hsl(0, 0%, 86%);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.circulo{
+  border-radius: 100%;
+  background-color: hsl(259, 100%, 65%);
+  border: none;
+  width: 65px;
+  height: 65px;
+}
+.circulo:active{
+  background-color: black;
+}
+.int{
+  padding-left: 50px;
+  padding-top: 45px;
+}
+.inpu{
+  padding-left: 20px;
+}
+img{
+  width: 32px;
+  height: 32px;
+}
+.color{
+  color:hsl(259, 100%, 65%);
 }
