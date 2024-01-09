@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import boton from './icon-arrow.svg';
-import { isValid,differenceInDays,differenceInMonths,differenceInYears } from 'date-fns';
 function App() {
   return (
     <div style={{fontFamily:'Arial'}} className="App">
@@ -16,7 +15,7 @@ function App() {
                 MONTH
               </li>
               <li className="titulos" id="ta">
-                YEAR
+                YEARS
               </li>
             </ul>
           </li>
@@ -77,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var dia = document.getElementById("dia").value;
     var mes = document.getElementById("mes").value;
     var anio = document.getElementById("anio").value;
-    
+
     var fechaActual=new Date();
     var year=fechaActual.getFullYear();
 
@@ -104,27 +103,39 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       
       if (1 <= dia && dia <= 31 && 1 <= mes && mes <= 12 && anio < year) {
-        var fechaUsuario=new Date(anio,mes-1,dia);
-        console.log('Fecha introducida:', fechaUsuario);
-        console.log('¿Fecha válida?', isValid(fechaUsuario));
-        if(isValid(fechaUsuario)){
-          var diferenciaAnios = differenceInYears(fechaActual, fechaUsuario);
-          var fechaConDiferenciaAnios = new Date(fechaActual);
-          fechaConDiferenciaAnios.setFullYear(fechaConDiferenciaAnios.getFullYear() - diferenciaAnios);
-    
-          var diferenciaMeses = differenceInMonths(fechaConDiferenciaAnios, fechaUsuario);
-          var fechaConDiferenciaMeses = new Date(fechaConDiferenciaAnios);
-          fechaConDiferenciaMeses.setMonth(fechaConDiferenciaMeses.getMonth() + diferenciaMeses);
-    
-          var diferenciaDias = differenceInDays(fechaConDiferenciaMeses, fechaUsuario);
-          var fechaConDiferenciaDias= new Date(fechaConDiferenciaMeses);
-          fechaConDiferenciaDias.setDate(fechaConDiferenciaDias.getDate()-diferenciaDias); 
+        var fechaUsuario = new Date(anio, mes - 1, dia);
 
+          if(fechaActual - fechaUsuario <=0) return "error";
+          let dias = fechaActual.getDate() - fechaUsuario.getDate(); 
+          let meses= fechaActual.getMonth() - fechaUsuario.getMonth();
+          let anios = fechaActual.getFullYear() - fechaUsuario.getFullYear();
 
-          document.getElementById("aniosNumero").textContent = diferenciaAnios;
-          document.getElementById("mesesNumero").textContent = diferenciaMeses;
-          document.getElementById("diasNumero").textContent = diferenciaDias;
-        }
+          if(dias<0){
+            let primer_dia_proximo_mes = new Date(fechaUsuario.getFullYear(),fechaUsuario.getMonth() +1 ,1);
+             let diff = primer_dia_proximo_mes - fechaUsuario;
+             let dias_hasta_fin_mes = Math.floor(diff /  (60 * 60 * 24 * 1000));
+             dias = dias_hasta_fin_mes + fechaUsuario.getDate() - 1;
+             mes--;
+           }
+           
+           if(meses<0){
+             meses = 12 + meses;
+             anios--;
+           }
+           if(dias<10){
+            dias="0"+dias;
+           }
+           if(meses<10){
+            meses="0"+meses;
+           }
+           if(anios<10){
+            anios="0"+anios
+           }
+
+        document.getElementById("aniosNumero").textContent = anios;
+        document.getElementById("mesesNumero").textContent = meses;
+        document.getElementById("diasNumero").textContent = dias;
+          
       }
 
     }else{
@@ -172,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("validaciondos").textContent = "";
       document.getElementById("validaciontres").textContent = "";
     }
+
     function mensajeError(idCampo, idTextoEstilo, idMensajeValidacion,mensaje){
       document.getElementById(idCampo).style.border="1px solid red"
       document.getElementById(idTextoEstilo).style.color="red";
@@ -179,7 +191,10 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById(idMensajeValidacion).textContent=mensaje;
       setTimeout(resetearEstilos,3000);
     }
+
+    
   })
   
 });
 export default App;
+
